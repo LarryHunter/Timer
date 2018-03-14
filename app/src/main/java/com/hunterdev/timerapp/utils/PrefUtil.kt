@@ -1,22 +1,21 @@
-package com.hunterdev.timerapp.Util
+package com.hunterdev.timerapp.utils
 
 import android.content.Context
 import android.preference.PreferenceManager
 import com.hunterdev.timerapp.TimerActivity
 
-/**
- * Created by lhunter on 03/13/2018.
- */
 class PrefUtil {
     companion object {
 
         private const val PREVIOUS_TIMER_LENGTH_SECONDS_ID = "com.hunterdev.timer.previous_timer_length"
         private const val TIMER_LENGTH_REMAINING_SECONDS_ID = "com.hunterdev.timer.timer_length_remaining"
         private const val TIMER_STATE_ID = "com.hunterdev.timer.timer_state"
+        private const val ALARM_SET_TIME_ID = "com.hunterdev.timer.background_time"
+        private const val TIMER_LENGTH_ID = "com.hunterdev.timerapp.timer_length"
 
         fun getTimerLengthInMinutes(context: Context): Int {
-            // placeholder for now
-            return 1
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            return preferences.getInt(TIMER_LENGTH_ID, 10)
         }
 
         fun getPreviousTimerLengthInSeconds(context: Context): Long {
@@ -50,6 +49,17 @@ class PrefUtil {
         fun setTimerLengthRemainingInSeconds(seconds: Long, context: Context) {
             val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
             editor.putLong(TIMER_LENGTH_REMAINING_SECONDS_ID, seconds)
+            editor.apply()
+        }
+
+        fun getAlarmSetTime(context: Context): Long {
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            return preferences.getLong(ALARM_SET_TIME_ID, 0)
+        }
+
+        fun setAlarmSetTime(time: Long, context: Context) {
+            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            editor.putLong(ALARM_SET_TIME_ID, time)
             editor.apply()
         }
     }

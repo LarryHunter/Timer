@@ -15,9 +15,33 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".SettingsActivity"
+            android:label="@string/action_settings"
+            android:parentActivityName=".TimerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <receiver
+            android:name=".TimerExpiredReceiver"
+            android:enabled="true"
+            android:exported="false">
+        </receiver>
+        <receiver
+            android:name=".TimerNotificationActionReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="start"/>
+                <action android:name="resume"/>
+                <action android:name="pause"/>
+                <action android:name="stop"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
