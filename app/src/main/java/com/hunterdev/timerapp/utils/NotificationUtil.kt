@@ -81,7 +81,7 @@ class NotificationUtil {
                     .addAction(R.drawable.ic_start, "Resume", resumePendingIntent)
 
             val nManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            nManager.createNotificationChannel(TIMER_CHANNEL_ID, TIMER_CHANNEL_NAME, false)
+            nManager.createNotificationChannel(TIMER_CHANNEL_ID, TIMER_CHANNEL_NAME, true)
             nManager.notify(TIMER_ID, nBuilder.build())
         }
 
